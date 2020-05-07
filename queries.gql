@@ -1,0 +1,207 @@
+mutation createFirstPart {
+  MergePart(
+    id: "part:123"
+    partNumber: "P-123"
+    name: "P-123 Description"
+    description: "My Part"
+    csiId: "00-0000"
+  ) {
+    _id
+    id
+    name
+    description
+  }
+  MergeModule(id: "module:1", sku: "BPR81L") {
+    _id
+    id
+    sku
+  }
+}
+
+mutation createSecondPart {
+  MergePart(
+    id: "part:124"
+    partNumber: "P-124"
+    name: "P-124 description"
+    description: "My Second Part"
+    csiId: "00-0000"
+  ) {
+    _id
+    id
+    name
+    description
+  }
+}
+
+mutation addPartToModule {
+  MergeModuleParts(
+    from: { id: "module:1" }
+    to: { id: "part:123" }
+    data: { quantity: 42 }
+  ) {
+    from {
+      id
+      sku
+    }
+    to {
+      partNumber
+    }
+    quantity
+  }
+}
+
+mutation addModeledPartToModule {
+  MergeModuleModeledParts(
+    from: { id: "module:1" }
+    to: { id: "part:124" }
+    data: { quantity: 10 }
+  ) {
+    from {
+      id
+      sku
+    }
+    to {
+      partNumber
+    }
+    quantity
+  }
+}
+
+mutation addPartToModule2 {
+  MergeModuleParts(
+    from: { id: "module:1" }
+    to: { id: "part:124" }
+    data: { quantity: 10 }
+  ) {
+    from {
+      id
+      sku
+    }
+    to {
+      partNumber
+    }
+    quantity
+  }
+}
+
+mutation addProject {
+  MergeProject(id: "project:1", name: "Project 1", projectNumber: "BR-549") {
+    id
+    name
+    projectNumber
+  }
+}
+
+mutation addModelFile {
+  MergeModelFile(id: "modelfile:1", name: "myfile.rvt") {
+    id
+    name
+  }
+}
+
+mutation addModuleModel {
+  MergeModuleModelFiles(
+    from: { id: "modelfile:1" }
+    to: { id: "module:1" }
+    data: { version: 1 }
+  ) {
+    from {
+      name
+    }
+    to {
+      sku
+    }
+  }
+}
+
+mutation addProjectModule {
+  MergeProjectModules(
+    from: { id: "project:1" }
+    to: { id: "module:1" }
+    data: { quantity: 4 }
+  ) {
+    from {
+      projectNumber
+    }
+    to {
+      sku
+    }
+    quantity
+  }
+}
+
+query getParts {
+  Part {
+    id
+    name
+    partNumber
+    modules {
+      Module {
+        id
+        sku
+      }
+      quantity
+    }
+    modeledModules {
+      Module {
+        id
+        sku
+      }
+      quantity
+    }
+  }
+}
+
+query getByModule {
+  Module {
+    sku
+    modeledParts {
+      Part {
+        id
+        name
+      }
+      quantity
+    }
+    parts {
+      Part {
+        id
+        name
+      }
+    }
+  }
+}
+
+query getFullProject {
+  Project {
+    name
+    id
+    modules {
+      Module {
+        sku
+        id
+        modelFiles {
+          version
+          ModelFile {
+            name
+            id
+          }
+        }
+        parts {
+          Part {
+            id
+            name
+          }
+          quantity
+        }
+        modeledParts {
+          Part {
+            id
+            name
+          }
+          quantity
+        }
+      }
+      quantity
+    }
+  }
+}
