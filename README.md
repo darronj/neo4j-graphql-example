@@ -1,6 +1,9 @@
 # Neo4j GraphQL example
 
 This project uses the following to add graphql on top of Neo4J.
+
+If you don't have a database instance, feel free to use the [free online sandbox](https://neo4j.com/sandbox/)
+
 To launch, add a .env file with the following variables defined.
 
 ```
@@ -14,9 +17,11 @@ PORT=<YOUR CUSTOM PORT>
 ```
 
 Launch the server by running
+
 ```
 npm start
 ```
+
 Open a browser to [http://localhost:3000](http://localhost:3000/graphql) and enjoy.
 
 Example queries can be found in the [queries.gql file](queries.gql)
