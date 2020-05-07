@@ -12,3 +12,11 @@ NEO4J_PASSWORD=<YOUR PASSWORD>
 NEO4J_DEBUG // default to false set to true if you want to see the logging
 PORT=<YOUR CUSTOM PORT>
 ```
+
+Launch the server by running
+```
+npm start
+```
+Open a browser to [http://localhost:3000](http://localhost:3000/graphql) and enjoy.
+
+Example queries can be found in the [queries.gql file](queries.gql)
