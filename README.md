@@ -1,8 +1,10 @@
 # Neo4j GraphQL example
 
-This project uses the following to add graphql on top of Neo4J.
+This project shows a graphql layer on top of Neo4J.
 
 If you don't have a database instance, feel free to use the [free online sandbox](https://neo4j.com/sandbox/)
+
+Documentation for neo4j-graphql.js can be found [here](https://grandstack.io/docs/neo4j-graphql-js.html)
 
 To launch, add a .env file with the following variables defined.
 
