@@ -74,7 +74,7 @@ const schema = makeAugmentedSchema({
   config: {
     query: true,
     mutation: true,
-    debug: process.env.NEO4J_DEBUG
+    debug: process.env.NEO4J_DEBUG || false
   }
 });
 
